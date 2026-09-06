@@ -32,6 +32,120 @@ export class AuthAccessTokenSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class ComentarioSchema extends BaseModel {
+  static $columns = ['comentario', 'createdAt', 'id', 'jugadorId', 'partidoId', 'updatedAt'] as const
+  $columns = ComentarioSchema.$columns
+  @column()
+  declare comentario: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare jugadorId: number
+  @column()
+  declare partidoId: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class HistorialPozoSchema extends BaseModel {
+  static $columns = ['afectado', 'createdAt', 'descripcion', 'id', 'pozoId', 'tipoMoviento', 'updatedAt'] as const
+  $columns = HistorialPozoSchema.$columns
+  @column()
+  declare afectado: number | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare descripcion: string
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare pozoId: number
+  @column()
+  declare tipoMoviento: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class JugadoreSchema extends BaseModel {
+  static $columns = ['alias', 'correo', 'createdAt', 'id', 'nombre', 'numeroContacto', 'updatedAt'] as const
+  $columns = JugadoreSchema.$columns
+  @column()
+  declare alias: string | null
+  @column()
+  declare correo: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare nombre: string
+  @column()
+  declare numeroContacto: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class PartidoSchema extends BaseModel {
+  static $columns = ['adminDni', 'adminPin', 'createdAt', 'cupoMax', 'id', 'inicioPartido', 'invitacion', 'status', 'ubicacion', 'updatedAt'] as const
+  $columns = PartidoSchema.$columns
+  @column()
+  declare adminDni: string
+  @column()
+  declare adminPin: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare cupoMax: number
+  @column({ isPrimary: true })
+  declare id: number
+  @column.dateTime()
+  declare inicioPartido: DateTime
+  @column()
+  declare invitacion: string
+  @column()
+  declare status: string
+  @column()
+  declare ubicacion: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class PartidosJugadoreSchema extends BaseModel {
+  static $columns = ['createdAt', 'estadoReserva', 'id', 'jugadorId', 'partidoId', 'updatedAt'] as const
+  $columns = PartidosJugadoreSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare estadoReserva: string
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare jugadorId: number
+  @column()
+  declare partidoId: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class PozoSchema extends BaseModel {
+  static $columns = ['costoTotal', 'createdAt', 'id', 'partidoId', 'recaudado', 'updatedAt'] as const
+  $columns = PozoSchema.$columns
+  @column()
+  declare costoTotal: number
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare partidoId: number
+  @column()
+  declare recaudado: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class UserSchema extends BaseModel {
   static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'updatedAt'] as const
   $columns = UserSchema.$columns
