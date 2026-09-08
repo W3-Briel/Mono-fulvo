@@ -33,5 +33,10 @@ router
       .prefix('account')
       .as('profile')
       .use(middleware.auth())
+    router
+      .group(() => {
+        router.post('partidos', [controllers.Partidos, 'store'])
+        router.get('partidos', [controllers.Partidos, 'index'])
+      })
   })
   .prefix('/api/v1')
