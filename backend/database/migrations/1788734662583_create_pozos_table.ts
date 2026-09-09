@@ -9,6 +9,7 @@ export default class extends BaseSchema {
 
       table.integer("partido_id")
             .notNullable()
+            .unique()
             .references("id")
             .inTable("partidos")
             .onDelete("CASCADE")
