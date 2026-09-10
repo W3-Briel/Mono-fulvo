@@ -13,5 +13,5 @@ export default class Partido extends PartidoSchema {
     @hasOne(() => Pozo, {
         foreignKey: "partidoId"
     })
-    declare partido: HasOne<typeof Pozo>
+    declare pozo: HasOne<typeof Pozo>
 }
