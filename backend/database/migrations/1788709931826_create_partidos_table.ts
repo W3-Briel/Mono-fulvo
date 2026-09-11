@@ -10,6 +10,7 @@ export default class extends BaseSchema {
       //creando mis columnas
       table.string("admin_dni").notNullable()
       table.string("admin_pin").notNullable()
+      table.string("cvu_alias_link").notNullable()
       table.string("invitacion").notNullable()
       table.datetime("inicio_partido").notNullable()
       table.string("ubicacion").notNullable()
