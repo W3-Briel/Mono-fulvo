@@ -10,6 +10,7 @@ export default class PartidoTransformer extends BaseTransformer<Partido> {
             "status",
             "cupoMax",
             "invitacion",
+            "cvuAliasLink",
             "id"
         ])
     }

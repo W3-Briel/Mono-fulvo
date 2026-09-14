@@ -1,6 +1,7 @@
 import Partido from '#models/partido'
 import PartidoTransformer from '#transformers/partido_transformer';
 import type { HttpContext } from '@adonisjs/core/http'
+import db from '@adonisjs/lucid/services/db';
 import { DateTime } from 'luxon';
 
 export default class PartidosController {
@@ -22,20 +23,30 @@ export default class PartidosController {
    * Handle form submission for the create action
    */
   async store({ request, response }: HttpContext) {
-    //hardcodeamos datos para probar nomas
     const body = request.body();
 
-    const partido = await Partido.create({
-      adminDni: body?.adminDni,
-      adminPin: body?.adminPin,
-      inicioPartido: DateTime.now(),
-      ubicacion: body?.ubicacion,
-      status: body?.status,
-      cupoMax: body?.cupoMax,
-      invitacion: body?.invitacion
-    });
+    const resultado = await db.transaction(async (trx) => {
+      const partido = await Partido.create({
+        adminDni: body?.adminDni,
+        adminPin: body?.adminPin,
+        inicioPartido: DateTime.now(),
+        ubicacion: body?.ubicacion,
+        cupoMax: body?.cupoMax,
+        cvuAliasLink: body?.cvuAliasLink
+      }, { client: trx });
 
-    response.created(new PartidoTransformer(partido).toObject())
+      const pozo = await partido.related('pozo').create({
+        costoTotal: body?.costoTotal,
+        recaudado: 0,
+        pozoPadre: null
+      }, { client: trx });
+
+      return { pozo, partido};
+    })
+
+    response.json(
+      {partido: new PartidoTransformer(resultado.partido).toObject(), pozo: resultado.pozo}
+    );
   }
 
   /**

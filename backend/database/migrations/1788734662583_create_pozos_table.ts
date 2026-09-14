@@ -14,6 +14,12 @@ export default class extends BaseSchema {
             .inTable("partidos")
             .onDelete("CASCADE")
 
+      table.integer("pozo_padre")
+            .references("id")
+            .inTable("pozos")
+            .onDelete("SET NULL")
+
+
       table.decimal('costo_total', 10, 2).notNullable()
       table.decimal('recaudado', 10, 2).notNullable().defaultTo(0)
 
