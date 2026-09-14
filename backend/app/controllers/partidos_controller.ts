@@ -22,7 +22,6 @@ export default class PartidosController {
    * Handle form submission for the create action
    */
   async store({ request, response }: HttpContext) {
-    //hardcodeamos datos para probar nomas
     const body = request.body();
 
     const partido = await Partido.create({
@@ -32,7 +31,8 @@ export default class PartidosController {
       ubicacion: body?.ubicacion,
       status: body?.status,
       cupoMax: body?.cupoMax,
-      invitacion: body?.invitacion
+      invitacion: body?.invitacion,
+      cvuAliasLink: body?.cvuAliasLink
     });
 
     response.created(new PartidoTransformer(partido).toObject())

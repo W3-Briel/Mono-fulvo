@@ -88,7 +88,7 @@ export class JugadoreSchema extends BaseModel {
 }
 
 export class PartidoSchema extends BaseModel {
-  static $columns = ['adminDni', 'adminPin', 'createdAt', 'cupoMax', 'id', 'inicioPartido', 'invitacion', 'status', 'ubicacion', 'updatedAt'] as const
+  static $columns = ['adminDni', 'adminPin', 'createdAt', 'cupoMax', 'cvuAliasLink', 'id', 'inicioPartido', 'invitacion', 'status', 'ubicacion', 'updatedAt'] as const
   $columns = PartidoSchema.$columns
   @column()
   declare adminDni: string
@@ -98,6 +98,8 @@ export class PartidoSchema extends BaseModel {
   declare createdAt: DateTime | null
   @column()
   declare cupoMax: number
+  @column()
+  declare cvuAliasLink: string
   @column({ isPrimary: true })
   declare id: number
   @column.dateTime()
@@ -130,7 +132,7 @@ export class PartidosJugadoreSchema extends BaseModel {
 }
 
 export class PozoSchema extends BaseModel {
-  static $columns = ['costoTotal', 'createdAt', 'id', 'partidoId', 'recaudado', 'updatedAt'] as const
+  static $columns = ['costoTotal', 'createdAt', 'id', 'partidoId', 'pozoPadre', 'recaudado', 'updatedAt'] as const
   $columns = PozoSchema.$columns
   @column()
   declare costoTotal: number
@@ -140,6 +142,8 @@ export class PozoSchema extends BaseModel {
   declare id: number
   @column()
   declare partidoId: number
+  @column()
+  declare pozoPadre: number | null
   @column()
   declare recaudado: number
   @column.dateTime({ autoCreate: true, autoUpdate: true })
