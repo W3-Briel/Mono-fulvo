@@ -5,6 +5,8 @@ import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import Jugador from './jugador.ts'
 
 export default class PartidoJugador extends PartidosJugadoreSchema {
+    static table = 'partidos_jugadores'
+
     @belongsTo(() => Partido, {
         foreignKey: 'partidoId'
     })
