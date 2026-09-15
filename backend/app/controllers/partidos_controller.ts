@@ -77,10 +77,26 @@ export default class PartidosController {
     /**
      * Handle form submission for the edit action
      */
-    // async update({ params, request }: HttpContext) {}
+    async cancelar({ params, response }: HttpContext) {
+        const partido = await Partido.findOrFail(params.id)
+        partido.cancelar()
+
+        await partido.save()
+
+        response.status(200).send(new PartidoTransformer(partido).toObject())
+    }
+
+    async finalizar({ params, response }: HttpContext) {
+        const partido = await Partido.findOrFail(params.id)
+        partido.finalizar()
+
+        await partido.save()
+
+        response.status(200).send(new PartidoTransformer(partido).toObject())
+    }
 
     /**
      * Delete record
      */
-    async destroy({ params }: HttpContext) { }
+    // async destroy({ params }: HttpContext) { }
 }

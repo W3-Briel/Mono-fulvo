@@ -20,4 +20,17 @@ export default class Partido extends PartidoSchema {
     static generateInvitacion(partido: Partido) {
         partido.invitacion = randomBytes(4).toString('base64url');
     }
+
+    cancelar(){
+        if (this.status == "FINALIZADO") throw new Error("No es posible cancelar un partido finalizado")
+        if (this.status == "CANCELADO") throw new Error("El partido ya se encontraba cancelado")
+        
+        this.status = "CANCELADO"
+    }
+    finalizar(){
+        if (this.status == "FINALIZADO") throw new Error("El partido ya se encontraba finalizado")
+        if (this.status == "CANCELADO") throw new Error("No se puede finalizar un partido cancelado")
+        
+        this.status = "FINALIZADO"
+    }
 }

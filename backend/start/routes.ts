@@ -40,6 +40,9 @@ router
         router.get('partidos', [controllers.Partidos, 'index'])
         router.get('partidos/invitacion/:invite', [controllers.Partidos, 'showByInvitacion'])
         router.get('partidos/:id', [controllers.Partidos, 'show'])
+        
+        router.patch('partidos/:id/cancelar', [controllers.Partidos, 'cancelar'])
+        router.patch('partidos/:id/finalizar', [controllers.Partidos, 'finalizar'])
       })
   })
   .prefix('/api/v1')
