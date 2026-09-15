@@ -1,13 +1,10 @@
 # Mono-fulvo
-Gestiona los partidos de futbol que vos quieras. Stack: Nodejs - Prisma - Adonisjs - React - Typescript
+Gestiona los partidos de futbol que vos quieras. Stack: Nodejs - lucid - Adonisjs - vue - Typescript
 
 
-Esquema inicial, sin login:
+Esquema inicial, sin login (sistema de token creado por adonis):
+<img width="1073" height="763" alt="image" src="https://github.com/user-attachments/assets/35a66093-939a-4e8f-939a-d4c24c178ff5" />
 
-<img width="579" height="565" alt="image" src="https://github.com/user-attachments/assets/d9dc7414-6dec-44ca-a774-054c59421f5d" />
-
-Tablas que creo adonis, es posible que mas adelante utilice el sistema de auntenticacion con token. Por eso no lo borre 🧔
-<img width="366" height="393" alt="image" src="https://github.com/user-attachments/assets/df2b8317-370a-46a3-aba4-392a150f99c8" />
 
 
 Documentación mínima inicial:
