@@ -38,6 +38,7 @@ router
       .group(() => {
         router.post('partidos', [controllers.Partidos, 'store'])
         router.get('partidos', [controllers.Partidos, 'index'])
+        router.get('partidos/invitacion/:invite', [controllers.Partidos, 'showByInvitacion'])
         router.get('partidos/:id', [controllers.Partidos, 'show'])
       })
   })
