@@ -52,7 +52,10 @@ export default class PartidosController {
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) { }
+  async show({ params }: HttpContext) {
+    const result = await Partido.findByOrFail("id",params.id)
+    return new PartidoTransformer(result).toObject()
+  }
 
   /**
    * Edit individual record
