@@ -1,5 +1,5 @@
 import { PozoSchema } from '#database/schema'
-import { belongsTo, hasMany } from '@adonisjs/lucid/orm'
+import { belongsTo, computed, hasMany } from '@adonisjs/lucid/orm'
 import Partido from './partido.ts'
 import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import HistorialPozo from './historial_pozo.ts'
@@ -23,4 +23,11 @@ export default class Pozo extends PozoSchema {
         foreignKey: 'pozoPadre',
     })
     declare hijos: HasMany<typeof Pozo>
+    @computed()
+    get cuotaPorCabeza(){
+        const total = this.costoTotal
+        const cupoMax = this.partido?.cupoMax || 0
+
+        return Number(total) / Number(cupoMax)
+    }
 }

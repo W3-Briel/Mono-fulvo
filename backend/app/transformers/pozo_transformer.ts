@@ -6,6 +6,7 @@ export default class PozoTransformer extends BaseTransformer<Pozo> {
     return this.pick(this.resource, [
       'id',
       'costoTotal',
+      'cuotaPorCabeza',
       'recaudado',
       'pozoPadre',
       'updatedAt'
