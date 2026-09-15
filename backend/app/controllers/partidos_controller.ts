@@ -44,7 +44,8 @@ export default class PartidosController {
 
             return { pozo, partido };
         })
-        await resultado.pozo.load('partido')
+        await resultado.partido.load('pozo')
+        await resultado.partido.pozo.load("partido")
 
         response.status(201).json(new PartidoWithPozoTransformer(resultado.partido).toObject());
     }
