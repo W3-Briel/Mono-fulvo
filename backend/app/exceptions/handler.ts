@@ -13,7 +13,29 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * response to the client
    */
   async handle(error: unknown, ctx: HttpContext) {
-    return super.handle(error, ctx)
+    let status = 500
+    let errorMessage = "Ocurrio un error en el servidor"
+    let errorCode = "Error_desconocido"
+
+
+    if (error instanceof Error) {
+      errorMessage = error.message
+    }
+
+    let adonisError = error as {status?: number, code?: string}
+    if (adonisError.status) status = adonisError.status
+    if (adonisError.code) errorCode = adonisError.code
+
+    //considerate homologado 🗣️🔥
+    return ctx.response.status(status).send(
+      {
+        success: false,
+        data: {
+          message: errorMessage,
+          code: errorCode
+        } 
+      }
+    )
   }
 
   /**
