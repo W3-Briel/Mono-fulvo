@@ -1,3 +1,5 @@
+import Jugador from '#models/jugador'
+import Partido from '#models/partido'
 import PartidoJugador from '#models/partido_jugador'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -10,6 +12,17 @@ export default class JugadorPartidosController {
     response.status(200).json(jugador_partido)
   }
 
+  async inscripcion({params, response}: HttpContext){
+    const partido = await Partido.findOrFail(params.partidoId)
+    const jugador = await Jugador.findOrFail(params.jugadorId)
+
+    const partidoJugador = await PartidoJugador.create({
+      partidoId: partido.id,
+      jugadorId: jugador.id
+    })
+
+    response.status(201).json(partidoJugador)
+  }
   // /**
   //  * Display form to create a new record
   //  */

@@ -44,8 +44,13 @@ router
         router.patch('partidos/:id/cancelar', [controllers.Partidos, 'cancelar'])
         router.patch('partidos/:id/finalizar', [controllers.Partidos, 'finalizar'])
 
+        
         router.get('jugadores', [controllers.Jugadores,'index'])
+        router.get('jugadores/:idJugador/partidos', [controllers.Jugadores,'show'])
+
+
         router.get('jugadores/partidos', [controllers.JugadorPartidos,'index'])
+        router.post('partidos/:partidoId/jugadores/:jugadorId/inscripcion', [controllers.JugadorPartidos, 'inscripcion'])
       })
   })
   .prefix('/api/v1')
