@@ -45,6 +45,7 @@ router
         router.patch('partidos/:id/finalizar', [controllers.Partidos, 'finalizar'])
 
         router.get('jugadores', [controllers.Jugadores,'index'])
+        router.get('jugadores/partidos', [controllers.JugadorPartidos,'index'])
       })
   })
   .prefix('/api/v1')

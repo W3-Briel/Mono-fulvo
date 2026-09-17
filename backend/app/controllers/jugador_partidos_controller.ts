@@ -1,20 +1,18 @@
-import Jugador from '#models/jugador'
-import JugadorTransformer from '#transformers/jugador_transformer'
+import PartidoJugador from '#models/partido_jugador'
 import type { HttpContext } from '@adonisjs/core/http'
 
-export default class JugadoresController {
+export default class JugadorPartidosController {
   /**
    * Display a list of resource
    */
   async index({response}: HttpContext) {
-    const jugadores = await Jugador.all()
-    const res = jugadores.map((j) => new JugadorTransformer(j).toObject())
-    response.status(200).json(res)
+    const jugador_partido = await PartidoJugador.query().preload('partido').preload('jugador')
+    response.status(200).json(jugador_partido)
   }
 
-  /**
-   * Display form to create a new record
-   */
+  // /**
+  //  * Display form to create a new record
+  //  */
   // async create({}: HttpContext) {}
 
   // /**
